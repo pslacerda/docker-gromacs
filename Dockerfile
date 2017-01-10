@@ -34,7 +34,8 @@ RUN wget -q $GROMACS_LINK && tar -xf gromacs-$GROMACS_VERSION.tar.gz && \
 	-DGMX_GSL=OFF -DGMX_DEFAULT_SUFFIX=ON -DGMX_GPU=OFF \
 	-DGMX_MPI=OFF -DGMX_DOUBLE=OFF \
 	-DGMX_INSTALL_PREFIX=$PREFIX -DCMAKE_INSTALL_PREFIX=$PROGRAMS_ROOT/gromacs-$GROMACS_VERSION && \
-	make -j $NUM_CORES && make install
+	make -j $NUM_CORES && make install && \
+        sh -c "echo source $PROGRAMS_ROOT/gromacs-$GROMACS_VERSION/bin/GMXRC" >> $GROMACS_HOME/.bashrc 
 
 VOLUME ["/data/"]
 
